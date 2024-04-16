@@ -15,6 +15,7 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """ Contains the functionality for the HBNB console"""
 
+    # determines prompt for interactive/non-interactive modes
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
 
     classes = {
@@ -42,6 +43,7 @@ class HBNBCommand(cmd.Cmd):
         """
         _cmd = _cls = _id = _args = ''  # initialize line elements
 
+        # scan for general formating - i.e '.', '(', ')'
         if not ('.' in line and '(' in line and ')' in line):
             return line
 
@@ -296,8 +298,10 @@ class HBNBCommand(cmd.Cmd):
 
             args = [att_name, att_val]
 
+        # retrieve dictionary of current objects
         new_dict = storage.all()[key]
 
+        # iterate through attr names and values
         for i, att_name in enumerate(args):
             # block only runs on even iterations
             if (i % 2 == 0):
